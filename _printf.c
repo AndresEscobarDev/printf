@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 		{'d', fo_int},
 		{0, 0}
 	};
-	int i, j, c = 0;
+	int i, i2, j, c = 0;
 	va_list vl;
 
 	va_start(vl, format);
@@ -27,13 +27,16 @@ int _printf(const char *format, ...)
 		j = 0;
 		if (format[i] == '%')
 		{
-			i++;
+			i2 = i + 1;
+			while (format[i2] == ' ')
+				i2++;
 			while (fos[j].fo)
 			{
-				if (format[i] == fos[j].fo)
+				if (format[i2] == fos[j].fo)
 				{
 					c += fos[j].f(vl);
-					i++;
+					i2++;
+					i = i2;
 					break;
 				}
 				if (c == -1)
@@ -41,7 +44,7 @@ int _printf(const char *format, ...)
 				j++;
 			}
 		}
-		if (format[i] && format[i] != '%')
+		if (format[i])
 		{
 			_putchar(format[i]);
 			c++;
