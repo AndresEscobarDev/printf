@@ -10,6 +10,8 @@ int _printf(const char *format, ...)
 		{'c', fo_char},
 		{'s', fo_string},
 		{'%', fo_percent},
+		{'i', fo_int},
+		{'d', fo_int},
 		{0, 0}
 	};
 	int i, j, c = 0;
@@ -34,6 +36,8 @@ int _printf(const char *format, ...)
 					i++;
 					break;
 				}
+				if (c == -1)
+					return (c);
 				j++;
 			}
 		}

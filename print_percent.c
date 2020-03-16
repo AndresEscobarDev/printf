@@ -7,6 +7,5 @@
 int fo_percent(va_list vl)
 {
 	(void)vl;
-	_putchar('%');
-	return (1);
+	return (_putchar('%'));
 }
