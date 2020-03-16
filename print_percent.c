@@ -4,8 +4,9 @@
  * @vl: va list.
  * Return: Nothing.
  */
-void fo_percent(va_list vl)
+int fo_percent(va_list vl)
 {
 	(void)vl;
 	_putchar('%');
+	return (1);
 }

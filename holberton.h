@@ -9,8 +9,8 @@ typedef struct fo
 } fo_t;
 int _printf(const char *format, ...);
 int _putchar(char c);
-void fo_char(va_list);
-void fo_string(va_list);
-void fo_percent(va_list);
+int fo_char(va_list);
+int fo_string(va_list);
+int fo_percent(va_list);
 
 #endif /* HOLBERTON_H */

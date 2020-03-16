@@ -12,27 +12,37 @@ int _printf(const char *format, ...)
 		{'%', fo_percent},
 		{0, 0}
 	};
-	int i, j;
+	int i, j, c = 0;
 	va_list vl;
 
 	va_start(vl, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 	for (i = 0; format[i]; i++)
 	{
 		j = 0;
 		if (format[i] == '%')
 		{
+			i++;
 			while (fos[j].fo)
 			{
 				if (format[i] == fos[j].fo)
 				{
-					fos[j].f(vl);
+					c += fos[j].f(vl);
+					i++;
 					break;
 				}
 				j++;
 			}
 		}
-		if (format[i])
+		if (format[i] && format[i] != '%')
+		{
 			_putchar(format[i]);
+			c++;
+		}
 	}
-	return (0);
+	va_end(vl);
+	return (c);
 }
