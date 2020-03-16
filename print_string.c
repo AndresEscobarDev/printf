@@ -9,7 +9,7 @@ int fo_string(va_list vl)
 	char *s = va_arg(vl, char*);
 	int i = 0;
 
-	if(!s)
+	if (!s)
 		s = "(null)";
 	while (s[i] != '\0')
 	{
