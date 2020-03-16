@@ -2,9 +2,9 @@
 /**
  * fo_string - prints a string
  * @vl: va_list from _printf
- * Return: 0
+ * Return: count of characters
  */
-void fo_string(va_list vl)
+int fo_string(va_list vl)
 {
 	char *s = va_arg(vl, char*);
 	int i = 0;
@@ -14,4 +14,5 @@ void fo_string(va_list vl)
 		_putchar(s[i]);
 		i++;
 	}
+	return (i);
 }
