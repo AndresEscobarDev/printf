@@ -16,6 +16,8 @@ fo_t fos[] = {
 		{'o', fo_octal},
 		{'x', fo_low_hex},
 		{'X', fo_up_hex},
+		{'S', fo_String},
+		{'p', fo_pointer},
 		{0, 0}
 	};
 	int i;

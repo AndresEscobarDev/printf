@@ -41,3 +41,18 @@ int print_number(unsigned long int n, int base, int c)
 		return (_putchar((n % base) + 55) + count);
 	return (_putchar((n % base) + '0') + count);
 }
+
+/**
+ * fo_pointer - 
+ * 
+ * 
+ */
+int fo_pointer(va_list vl)
+{
+	void *i = va_arg(vl, void *);
+
+	if (!i)
+		return (_printf("(nil)"));
+	return (_printf("0x%x", i));
+
+}

@@ -26,5 +26,7 @@ int fo_unsigned(va_list vl);
 int fo_octal(va_list);
 int fo_low_hex(va_list);
 int fo_up_hex(va_list);
+int fo_String(va_list);
+int fo_pointer(va_list);
 
 #endif /* HOLBERTON_H */
