@@ -41,8 +41,11 @@ int fo_String(va_list vl)
 				count += _printf("\\x%X", s[i]);
 			i++;
 		}
-		count += _putchar(s[i]);
-		i++;
+		else
+		{
+			count += _putchar(s[i]);
+			i++;
+		}
 	}
 	return (count);
 }
