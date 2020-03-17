@@ -19,13 +19,19 @@ int fo_int(va_list vl)
 int print_number(int n)
 {
 	int count = 0;
+	unsigned int nn = 0;
 
 	if (n < 0)
 	{
-		n = -n;
+		nn = -n;
 		count += _putchar('-');
 	}
-	if (n / 10)
-		count += print_number(n / 10);
-	return (_putchar((n % 10) + '0') + count);
+	else
+	{
+		nn = n;
+	}
+	
+	if (nn / 10)
+		count += print_number(nn / 10);
+	return (_putchar((nn % 10) + '0') + count);
 }
