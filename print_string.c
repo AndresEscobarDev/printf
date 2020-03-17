@@ -36,8 +36,9 @@ int fo_String(va_list vl)
 		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
 		{
 			if (s[i] <= 10)
-				count += _putchar(0 + '0');
+				count += _putchar('0');
 			count += _printf("\\x%X", s[i]);
+			i++;
 		}
 		count += _putchar(s[i]);
 		i++;
