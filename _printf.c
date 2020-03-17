@@ -28,7 +28,6 @@ int _printf(const char *format, ...)
 				continue;
 			}
 			pfunc = get_format(format[i]);
-
 			if (pfunc)
 				c += pfunc(vl);
 			else

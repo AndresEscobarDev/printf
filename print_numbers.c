@@ -7,31 +7,37 @@
 int fo_int(va_list vl)
 {
 	int i = va_arg(vl, int);
+	unsigned int n;
 
-	return (print_number(i));
+	if (i < 0)
+	{
+		n = -i;
+		_putchar('-');
+		return (print_number(n, 10, 0) + 1);
+	}
+	else
+	{
+		n = i;
+		return (print_number(n, 10, 0));
+	}
 }
 
 /**
  * print_number - prints a number
- * @n: int from va_list
+ * @n: int from va_list.
+ * @base: Base to convert.
+ * @c: hex in lower or upper case.
  * Return: count of characters and the number
  */
-int print_number(int n)
+int print_number(unsigned long int n, int base, int c)
 {
 	int count = 0;
-	unsigned int nn = 0;
 
-	if (n < 0)
-	{
-		nn = -n;
-		count += _putchar('-');
-	}
-	else
-	{
-		nn = n;
-	}
-
-	if (nn / 10)
-		count += print_number(nn / 10);
-	return (_putchar((nn % 10) + '0') + count);
+	if (n / base)
+		count += print_number(n / base, base, c);
+	if (n % base > 9 && c == 0)
+		return (_putchar((n % base) + 87) + count);
+	else if (n % base > 9 && c == 1)
+		return (_putchar((n % base) + 55) + count);
+	return (_putchar((n % base) + '0') + count);
 }

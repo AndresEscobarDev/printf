@@ -11,6 +11,11 @@ fo_t fos[] = {
 		{'s', fo_string},
 		{'i', fo_int},
 		{'d', fo_int},
+		{'b', fo_binary},
+		{'u', fo_unsigned},
+		{'o', fo_octal},
+		{'x', fo_low_hex},
+		{'X', fo_up_hex},
 		{0, 0}
 	};
 	int i;
