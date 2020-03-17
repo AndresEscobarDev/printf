@@ -2,11 +2,18 @@
 #define HOLBERTON_H
 
 #include <stdarg.h>
+#include <stdlib.h>
+/**
+ * struct fo - Formats and functions.
+ * @fo: Formats.
+ * @f: Functions.
+ */
 typedef struct fo
 {
 	char fo;
 	int (*f)(va_list);
 } fo_t;
+int (*get_format(char c))(va_list);
 int print_number(int);
 int _printf(const char *format, ...);
 int _putchar(char c);

@@ -6,49 +6,41 @@
  */
 int _printf(const char *format, ...)
 {
-	fo_t fos[] = {
-		{'c', fo_char},
-		{'s', fo_string},
-		{'%', fo_percent},
-		{'i', fo_int},
-		{'d', fo_int},
-		{0, 0}
-	};
-	int i, i2, j, c = 0;
+	int (*pfunc)(va_list);
+	int i, c = 0;
 	va_list vl;
 
 	va_start(vl, format);
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
 	for (i = 0; format[i]; i++)
 	{
-		j = 0;
 		if (format[i] == '%')
 		{
-			i2 = i + 1;
-			while (format[i2] == ' ')
-				i2++;
-			while (fos[j].fo)
+			i++;
+			while (format[i] == ' ' && format[i])
+				i++;
+			if (!format[i])
+				return (-1);
+			if (format[i] == '%')
 			{
-				if (format[i2] == fos[j].fo)
-				{
-					c += fos[j].f(vl);
-					i2++;
-					i = i2;
-					break;
-				}
-				if (c == -1)
-					return (c);
-				j++;
+				c += _putchar('%');
+				continue;
+			}
+			pfunc = get_format(format[i]);
+
+			if (pfunc)
+				c += pfunc(vl);
+			else
+			{
+				c += _putchar('%');
+				if (format[i - 1] == ' ')
+					c += _putchar(' ');
+				c += _putchar(format[i]);
 			}
 		}
-		if (format[i])
-		{
-			_putchar(format[i]);
-			c++;
-		}
+		else
+			c += _putchar(format[i]);
 	}
 	va_end(vl);
 	return (c);
