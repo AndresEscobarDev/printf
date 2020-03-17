@@ -37,8 +37,7 @@ int fo_String(va_list vl)
 		{
 			if (s[i] <= 10)
 				count += _putchar(0 + '0');
-			count += _putchar('\x' + '0');
-			count += _printf(fo_up_hex(s[i]));
+			count += _printf("\\x%X", s[i]);
 		}
 		count += _putchar(s[i]);
 		i++;
