@@ -33,7 +33,7 @@ int fo_String(va_list vl)
 		s = "(null)";
 	while (s[i] != '\0')
 	{
-		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
+		if (s[i] > 0 && (s[i] < 32 || s[i] >= 127))
 		{
 			if (s[i] <= 15)
 				count += _printf("\\x0%X", s[i]);
