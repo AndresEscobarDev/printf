@@ -30,7 +30,7 @@ int print_number(int n)
 	{
 		nn = n;
 	}
-	
+
 	if (nn / 10)
 		count += print_number(nn / 10);
 	return (_putchar((nn % 10) + '0') + count);

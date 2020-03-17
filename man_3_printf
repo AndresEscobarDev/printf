@@ -1,0 +1,42 @@
+.TH _PRINTF 3 "13 March 2020" "1.0" "_printf man page"
+.SH NAME
+.B _printf
+- formatted output conversion
+.SH SYNOPSIS
+.B #include \(dqholberton.h\(dq
+.sp
+.B int _printf(const char *
+.I format
+.B , ...);
+.SH DESCRIPTION
+The _printf function is a variadic function that produces a string according to a
+.I format
+and prints to the standar output. This function was made for a
+.B Holberton School
+project and the expected is that the function works like the C standar library function printf.
+.SH RETURN VALUE
+Upon a successful return, the function returns the amount of characters printed. If an error is encountered then returns -1.
+.SH Format of the format string
+The format string contains any characters and it will be printed as it is. Each conversion specification is introduced by the character %, and ends with a 
+.I conversion specifier.
+.SH THE CONVERSION SPECIFIER
+A character that specifies the type of conversion to be applied. Their meanings are:
+.sp
+.B d, i
+- Prints decimal numbers in base 10.
+.sp
+.B c
+- Prints a single character converting an
+.I int
+into an 
+.I unsigned char.
+.sp
+.B s
+- Prints a string expected to be a pointer to an array of characters.
+.sp
+.B %
+- Prints a single percent sign (%).
+.SH SEE ALSO
+printf(3)
+.SH AUTHORS
+Andres Felipe Escobar Cardona, Eddy Santiago Zapata Higuita
