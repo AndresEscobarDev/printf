@@ -33,7 +33,7 @@ int fo_octal(va_list vl)
  */
 int fo_low_hex(va_list vl)
 {
-	return (print_number(va_arg(vl, unsigned int), 16, 0));
+	return (print_number(va_arg(vl, unsigned long int), 16, 0));
 }
 /**
  * fo_up_hex - Convert a integer base 10 to hex.
@@ -42,5 +42,5 @@ int fo_low_hex(va_list vl)
  */
 int fo_up_hex(va_list vl)
 {
-	return (print_number(va_arg(vl, unsigned int), 16, 1));
+	return (print_number(va_arg(vl, unsigned long int), 16, 1));
 }

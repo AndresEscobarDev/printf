@@ -43,13 +43,13 @@ int print_number(unsigned long int n, int base, int c)
 }
 
 /**
- * fo_pointer - 
- * 
- * 
+ * fo_pointer - print an address.
+ * @vl: Va list.
+ * Return: _printf function.
  */
 int fo_pointer(va_list vl)
 {
-	void *i = va_arg(vl, void *);
+	unsigned long int i = va_arg(vl, unsigned long int);
 
 	if (!i)
 		return (_printf("(nil)"));
