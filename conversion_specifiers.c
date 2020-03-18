@@ -29,12 +29,12 @@ int fo_unsigned(va_list vl, fl_t *fl)
  */
 int fo_octal(va_list vl, fl_t *fl)
 {
-	unsigned int n = va_arg(vl, unsigned int);
-	unsigned int c = 0;
-
 	if (fl->fl_hash == 1 && n != 0)
-		c += _putchar('0');
-	return (print_number(n, 8, 0) + c);
+	{
+		_putchar('0');
+		return (print_number(va_arg(vl, unsigned int), 8, 0) + 1);
+	}
+	return (print_number(va_arg(vl, unsigned int), 8, 0));
 }
 /**
  * fo_low_hex - Convert a integer base 10 to hex.
@@ -44,12 +44,13 @@ int fo_octal(va_list vl, fl_t *fl)
  */
 int fo_low_hex(va_list vl, fl_t *fl)
 {
-	unsigned long int n = va_arg(vl, unsigned long int);
-	unsigned int c = 0;
-
 	if (fl->fl_hash == 1 && n != 0)
-		c += _printf("0x");
-	return (print_number(n, 16, 0) + c);
+	{
+		_putchar('0');
+		_putchar('x');
+		return (print_number(va_arg(vl, unsigned long int), 16, 0) + 2);
+	}
+	return (print_number(va_arg(vl, unsigned long int), 16, 0));
 }
 /**
  * fo_up_hex - Convert a integer base 10 to hex.
@@ -59,10 +60,11 @@ int fo_low_hex(va_list vl, fl_t *fl)
  */
 int fo_up_hex(va_list vl, fl_t *fl)
 {
-	unsigned long int n = va_arg(vl, unsigned long int);
-	unsigned int c = 0;
-
 	if (fl->fl_hash == 1 && n != 0)
-		c += _printf("0X");
-	return (print_number(n, 16, 1) + c);
+	{
+		_putchar('0');
+		_putchar('X');
+		return (print_number(va_arg(vl, unsigned long int), 16, 1) + 2);
+	}
+	return (print_number(va_arg(vl, unsigned long int), 16, 1));
 }
