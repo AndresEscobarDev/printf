@@ -19,10 +19,10 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (!format[i])
-				return (-1);
 			while (get_flags(format[i], &fl))
 				i++;
+			if (!format[i])
+				return (-1);
 			if (format[i] == '%')
 			{
 				c += _putchar('%');
@@ -32,7 +32,12 @@ int _printf(const char *format, ...)
 			if (pfunc)
 				c += pfunc(vl, &fl);
 			else
-				_printf("%%%c", format[i]);
+			{
+				c += _putchar('%');
+				if (format[i - 1] == ' ')
+					c += _putchar(' ');
+				c += _putchar(format[i]);
+			}
 		}
 		else
 			c += _putchar(format[i]);
