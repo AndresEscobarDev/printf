@@ -28,7 +28,7 @@ int fo_int(va_list vl, fl_t *fl)
 }
 
 /**
- * print_number - prints a number
+ * print_number2 - prints a number
  * @n: int from va_list.
  * @base: Base to convert.
  * @c: hex in lower or upper case.
@@ -56,10 +56,12 @@ int print_number(unsigned long int n, int base, int c)
 int fo_pointer(va_list vl, fl_t *fl)
 {
 	unsigned long int i = va_arg(vl, unsigned long int);
+	int c = 0;
 
 	(void)fl;
 	if (!i)
 		return (_printf("(nil)"));
-	return (_printf("0x%x", i));
-
+	c += _printf("0x");
+	c += print_number(i, 16, 0);
+	return (c);
 }

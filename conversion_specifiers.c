@@ -44,7 +44,7 @@ int fo_octal(va_list vl, fl_t *fl)
  */
 int fo_low_hex(va_list vl, fl_t *fl)
 {
-	unsigned long int n = va_arg(vl, unsigned long int);
+	unsigned int n = va_arg(vl, unsigned int);
 	unsigned int c = 0;
 
 	if (fl->fl_hash == 1 && n != 0)
