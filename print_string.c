@@ -93,12 +93,16 @@ int fo_ROT13(va_list vl, fl_t *fl)
 	(void)fl;
 	for (i = 0; c[i]; i++)
 	{
-		for (j = 0; a[j] != '\0'; j++)
+		if (c[i] < 'A' || (c[i] > 'Z' && c[i] < 'a') || c[i] > 'z')
+			_putchar(c[i]);
+		else
 		{
-			if (c[i] == a[j])
+			for (j = 0; a[j] != '\0'; j++)
 			{
-				_putchar(b[j]);
-				break;
+				if (c[i] == a[j])
+				{
+					_putchar(b[j]);
+				}
 			}
 		}
 	}
