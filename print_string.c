@@ -49,3 +49,45 @@ int fo_String(va_list vl)
 	}
 	return (count);
 }
+
+int fo_rev_string(va_list vl)
+{
+	char *s = va_arg(vl, char*);
+	int i = 0, j = 0;
+	char temp = 0;
+
+	if (!s)
+		s = "(null)";
+	while (s[i] != '\0')
+		i++;
+	while (j < i - 1)
+	{
+		temp = s[i - 1];
+		s[i - 1] = s[j];
+		s[j] = temp;
+		j++;
+		i--;
+	}
+	return (_printf("%s\n", s));
+}
+
+int fo_ROT13(va_list vl)
+{
+	int i, j;
+	char *c = va_arg(va_list, char*);
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	for (i = 0; c[i] != '\0'; i++)
+	{
+		for (j = 0; a[j] != '\0'; j++)
+		{
+			if (c[i] == a[j])
+			{
+				c[i] = b[j];
+				break;
+			}
+		}
+	}
+	return (_printf("%s\n", c));
+}
