@@ -29,7 +29,8 @@ int fo_unsigned(va_list vl, fl_t *fl)
  */
 int fo_octal(va_list vl, fl_t *fl)
 {
-	unsigned int n = va_arg(vl, unsigned int), c = 0;
+	unsigned int n = va_arg(vl, unsigned int);
+	unsigned int c = 0;
 
 	if (fl->fl_hash == 1 && n != 0)
 		c += _putchar('0');
@@ -63,5 +64,5 @@ int fo_up_hex(va_list vl, fl_t *fl)
 
 	if (fl->fl_hash == 1 && n != 0)
 		c += _printf("0X");
-	return (print_number(n, 16, 1));
+	return (print_number(n, 16, 1) + c);
 }
