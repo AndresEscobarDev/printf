@@ -2,13 +2,18 @@
 /**
  * fo_int - prints an integer
  * @vl: va_list from _printf
+ * @fl: flags
  * Return: count of characters and the number
  */
-int fo_int(va_list vl)
+int fo_int(va_list vl, fl_t *fl)
 {
 	int i = va_arg(vl, int);
-	unsigned int n;
+	unsigned int n, c = 0;
 
+	if (i >= 0 && fl->fl_plus == 0 && fl->fl_space == 1)
+		c += _putchar(' ');
+	if (fl->fl_plus == 1 && i >= 0)
+		c += _putchar('+');
 	if (i < 0)
 	{
 		n = -i;
@@ -18,7 +23,7 @@ int fo_int(va_list vl)
 	else
 	{
 		n = i;
-		return (print_number(n, 10, 0));
+		return (print_number(n, 10, 0) + c);
 	}
 }
 
@@ -45,12 +50,14 @@ int print_number(unsigned long int n, int base, int c)
 /**
  * fo_pointer - print an address.
  * @vl: Va list.
+ * @fl: flags.
  * Return: _printf function.
  */
-int fo_pointer(va_list vl)
+int fo_pointer(va_list vl, fl_t *fl)
 {
 	unsigned long int i = va_arg(vl, unsigned long int);
 
+	(void)fl;
 	if (!i)
 		return (_printf("(nil)"));
 	return (_printf("0x%x", i));

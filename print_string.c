@@ -2,13 +2,15 @@
 /**
  * fo_string - prints a string
  * @vl: va_list from _printf
+ * @fl: flags.
  * Return: count of characters
  */
-int fo_string(va_list vl)
+int fo_string(va_list vl, fl_t *fl)
 {
 	char *s = va_arg(vl, char*);
 	int i = 0;
 
+	(void)fl;
 	if (!s)
 		s = "(null)";
 	while (s[i] != '\0')
@@ -22,13 +24,15 @@ int fo_string(va_list vl)
 /**
  * fo_String - prints a string
  * @vl: va_list from _printf
+ * @fl: flags.
  * Return: count of characters
  */
-int fo_String(va_list vl)
+int fo_String(va_list vl, fl_t *fl)
 {
 	char *s = va_arg(vl, char*);
 	int i = 0, count = 0;
 
+	(void)fl;
 	if (!s)
 		s = "(null)";
 	while (s[i] != '\0')
@@ -49,45 +53,54 @@ int fo_String(va_list vl)
 	}
 	return (count);
 }
-
-int fo_rev_string(va_list vl)
+/**
+ * fo_rev_string - prints a string in reverse.
+ * @vl: va_list from _printf
+ * @fl: flags.
+ * Return: count of characters
+ */
+int fo_rev_string(va_list vl, fl_t *fl)
 {
-	char *s = va_arg(vl, char*);
+	char *s = va_arg(vl, char *);
 	int i = 0, j = 0;
-	char temp = 0;
 
+	(void)fl;
 	if (!s)
 		s = "(null)";
-	while (s[i] != '\0')
+	while (s[i])
 		i++;
-	while (j < i - 1)
+	j = i - 1;
+	while (j >= 0)
 	{
-		temp = s[i - 1];
-		s[i - 1] = s[j];
-		s[j] = temp;
-		j++;
-		i--;
+		_putchar(s[j]);
+		j--;
 	}
-	return (_printf("%s\n", s));
+	return (i);
 }
-
-int fo_ROT13(va_list vl)
+/**
+ * fo_ROT13 - prints a string in ROT13.
+ * @vl: va_list from _printf
+ * @fl: flags.
+ * Return: count of characters
+ */
+int fo_ROT13(va_list vl, fl_t *fl)
 {
 	int i, j;
-	char *c = va_arg(va_list, char*);
+	char *c = va_arg(vl, char *);
 	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	for (i = 0; c[i] != '\0'; i++)
+	(void)fl;
+	for (i = 0; c[i]; i++)
 	{
 		for (j = 0; a[j] != '\0'; j++)
 		{
 			if (c[i] == a[j])
 			{
-				c[i] = b[j];
+				_putchar(b[j]);
 				break;
 			}
 		}
 	}
-	return (_printf("%s\n", c));
+	return (i);
 }

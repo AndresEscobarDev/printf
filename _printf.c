@@ -6,9 +6,10 @@
  */
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list);
+	int (*pfunc)(va_list, fl_t *);
 	int i, c = 0;
 	va_list vl;
+	fl_t fl =  {0, 0, 0};
 
 	va_start(vl, format);
 	if (!format || (format[0] == '%' && !format[1]))
@@ -18,10 +19,10 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			while (format[i] == ' ' && format[i])
-				i++;
 			if (!format[i])
 				return (-1);
+			while (get_flags(format[i], &fl))
+				i++;
 			if (format[i] == '%')
 			{
 				c += _putchar('%');
@@ -29,14 +30,9 @@ int _printf(const char *format, ...)
 			}
 			pfunc = get_format(format[i]);
 			if (pfunc)
-				c += pfunc(vl);
+				c += pfunc(vl, &fl);
 			else
-			{
-				c += _putchar('%');
-				if (format[i - 1] == ' ')
-					c += _putchar(' ');
-				c += _putchar(format[i]);
-			}
+				_printf("%%%c", format[i]);
 		}
 		else
 			c += _putchar(format[i]);

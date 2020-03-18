@@ -4,7 +4,7 @@
  * @c: format.
  * Return: NULL or pointer.
  */
-int (*get_format(char c))(va_list)
+int (*get_format(char c))(va_list, fl_t *)
 {
 fo_t fos[] = {
 		{'c', fo_char},
@@ -18,6 +18,8 @@ fo_t fos[] = {
 		{'X', fo_up_hex},
 		{'S', fo_String},
 		{'p', fo_pointer},
+		{'r', fo_rev_string},
+		{'R', fo_ROT13},
 		{0, 0}
 	};
 	int i;
@@ -29,4 +31,29 @@ fo_t fos[] = {
 			return (fos[i].f);
 	}
 	return (NULL);
+}
+/**
+ * get_flags - switch on the flags.
+ * @c: char to compare.
+ * @fl: structure flag from _printf.
+ * Return: 1 or 0;
+ */
+int get_flags(char c, fl_t *fl)
+{
+	if (c == '+')
+	{
+		fl->fl_plus = 1;
+		return (1);
+	}
+	else if (c == ' ')
+	{
+		fl->fl_space = 1;
+		return (1);
+	}
+	else if (c == '#')
+	{
+		fl->fl_hash = 1;
+		return (1);
+	}
+	return (0);
 }
